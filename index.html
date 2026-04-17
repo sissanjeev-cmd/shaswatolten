@@ -18,7 +18,7 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
-      padding-top: 3rem;
+      padding-top: 1.5rem;
     }
 
     .video-bg {
@@ -94,7 +94,7 @@
       line-height: 1.05;
       letter-spacing: 0.04em;
       color: #f1f5f9;
-      margin: 2rem 0 1.5rem;
+      margin: 0 0 1.5rem;
     }
 
     .hero-headline em {
@@ -130,7 +130,7 @@
     .hero-3d {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .hero-3d-card {
@@ -141,9 +141,29 @@
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35), 0 0 50px rgba(99, 102, 241, 0.18);
       position: relative;
       transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .hero-3d-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(56, 189, 248, 0.28), transparent 16%),
+        radial-gradient(circle at 70% 20%, rgba(168, 85, 247, 0.26), transparent 14%),
+        radial-gradient(circle at 50% 78%, rgba(236, 72, 153, 0.18), transparent 28%),
+        radial-gradient(circle at 50% 20%, rgba(129, 140, 248, 0.12), transparent 45%);
+      mix-blend-mode: screen;
+      opacity: 1;
+      filter: blur(1px);
+    }
+
+    .hero-3d-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 75px 140px rgba(0, 0, 0, 0.45), 0 0 80px rgba(168, 85, 247, 0.25), inset 0 0 0 1px rgba(123, 57, 252, 0.12);
     }
 
     .hero-3d-card:hover {
@@ -153,17 +173,17 @@
 
     .hero-3d-card spline-viewer {
       position: absolute;
-      top: 42%;
+      top: 46%;
       left: 50%;
-      width: 135%;
-      height: 135%;
-      transform: translate(-50%, -53%);
+      width: 132%;
+      height: 132%;
+      transform: translate(-50%, -56%);
       display: block;
       transition: transform 0.35s ease, filter 0.35s ease;
     }
 
     .hero-3d-card:hover spline-viewer {
-      transform: translate(-50%, -53%) scale(1.03);
+      transform: translate(-50%, -56%) scale(1.03);
       filter: drop-shadow(0 0 28px rgba(123, 57, 252, 0.28));
     }
 
@@ -172,7 +192,7 @@
       flex-direction: column;
       align-items: flex-end;
       gap: 0.45rem;
-      margin: 1.5rem 0 2rem;
+      margin: 1rem 0 1.75rem;
       align-self: flex-end;
       width: auto;
     }
@@ -216,14 +236,30 @@
       padding: 2.5rem;
       min-height: 640px;
       border-radius: 32px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.25);
+      background: rgba(10, 15, 30, 0.72);
+      border: 1px solid rgba(123, 57, 252, 0.22);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(24px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-secondary-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.10), transparent 20%),
+        radial-gradient(circle at 80% 15%, rgba(168, 85, 247, 0.10), transparent 18%);
+      opacity: 0.75;
     }
 
     .hero-secondary-content {
       max-width: 420px;
       text-align: left;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-secondary-content h3 {
@@ -480,12 +516,6 @@
     <div class="video-hero-content" style="animation: fadeUp 0.9s ease forwards;">
       <div class="hero-grid">
         <div class="hero-copy">
-          <!-- Glass pill badge -->
-          <div class="glass-pill" style="margin: 0 0 1.5rem 0; justify-content:flex-start;">
-            <span class="glass-pill-badge">New</span>
-            <span class="glass-pill-text">ML Eng @ArenaX Labs · Open to Opportunities</span>
-          </div>
-
           <!-- Headline (Instrument Serif, matching component) -->
           <h1 class="hero-headline">
             From Code to Intelligent Machines — Building the Future with Robotics &amp; AI
