@@ -229,30 +229,33 @@
       opacity: 0.75;
     }
 
-    .hero-secondary-panel {
+    .hero-secondary-panel,
+    .spline-right.hero-secondary-panel {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2.5rem;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 4.5rem 2.5rem 2.5rem;
       min-height: 640px;
       border-radius: 32px;
-      background: rgba(10, 15, 30, 0.72);
-      border: 1px solid rgba(123, 57, 252, 0.22);
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(24px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.30), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
       position: relative;
       overflow: hidden;
     }
 
-    .hero-secondary-panel::after {
+    .hero-secondary-panel::after,
+    .spline-right.hero-secondary-panel::after {
       content: '';
       position: absolute;
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.10), transparent 20%),
-        radial-gradient(circle at 80% 15%, rgba(168, 85, 247, 0.10), transparent 18%);
-      opacity: 0.75;
+        radial-gradient(circle at 15% 20%, rgba(123, 57, 252, 0.12), transparent 18%),
+        radial-gradient(circle at 80% 15%, rgba(34, 211, 238, 0.10), transparent 16%);
+      mix-blend-mode: screen;
+      opacity: 0.6;
     }
 
     .hero-secondary-content {
@@ -260,13 +263,16 @@
       text-align: left;
       position: relative;
       z-index: 1;
+      width: 100%;
     }
 
     .hero-secondary-content h3 {
-      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
       color: #f8fafc;
-      margin-bottom: 1rem;
+      margin: 0 0 1rem;
       line-height: 1.05;
+      letter-spacing: -0.03em;
     }
 
     .hero-secondary-content p {
@@ -343,13 +349,16 @@
       z-index: 10;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .spline-right {
       flex: 1;
       position: relative;
       min-width: 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
     spline-viewer {
