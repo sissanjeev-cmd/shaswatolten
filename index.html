@@ -12,12 +12,13 @@
     .video-hero {
       position: relative;
       width: 100%;
-      min-height: 100vh;
+      min-height: 85vh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding-top: 3rem;
     }
 
     .video-bg {
@@ -142,32 +143,70 @@
       background: rgba(255, 255, 255, 0.05);
       box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
       position: relative;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .hero-3d-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 65px 120px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(123, 57, 252, 0.12);
     }
 
     .hero-3d-card spline-viewer {
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      width: 135%;
+      height: 135%;
+      transform: translate(-50%, -53%);
       display: block;
+      transition: transform 0.35s ease, filter 0.35s ease;
     }
 
-    .hero-line {
-      width: 120px;
-      height: 2px;
-      margin: 1.5rem 0 0;
-      background: linear-gradient(135deg, #c084fc, #7b39fc);
-      border: none;
+    .hero-3d-card:hover spline-viewer {
+      transform: translate(-50%, -53%) scale(1.03);
+      filter: drop-shadow(0 0 28px rgba(123, 57, 252, 0.28));
+    }
+
+    .hero-signature-wrap {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.45rem;
+      margin: 1.5rem 0 2rem;
+      align-self: flex-end;
+      width: auto;
     }
 
     .hero-signature {
-      margin-top: 1rem;
-      font-family: 'Great Vibes', 'Brush Script MT', cursive;
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-family: 'Dancing Script', 'Great Vibes', cursive;
+      font-size: clamp(2rem, 4vw, 3rem);
       color: #f8fafc;
-      letter-spacing: 0.02em;
-      line-height: 1.05;
-      transform: rotate(45deg);
-      transform-origin: left top;
+      letter-spacing: 0;
+      line-height: 1.02;
       display: inline-block;
+      transform: none;
+    }
+
+    .hero-signature-line {
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(135deg, #c084fc, #7b39fc);
+      border-radius: 999px;
+    }
+
+    .hero-signature-dots {
+      display: flex;
+      gap: 0.4rem;
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    .hero-signature-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #f8fafc;
+      opacity: 0.75;
     }
 
     .hero-secondary-panel {
@@ -451,8 +490,13 @@
           <h1 class="hero-headline">
             From Code to Intelligent Machines — Building the Future with Robotics &amp; AI
           </h1>
-          <hr class="hero-line" />
-          <div class="hero-signature">Shaswat</div>
+          <div class="hero-signature-wrap">
+            <div class="hero-signature">Shaswat</div>
+            <div class="hero-signature-line"></div>
+            <div class="hero-signature-dots">
+              <span></span><span></span>
+            </div>
+          </div>
           <p class="hero-subtext">
             Pushing the boundaries of safe reinforcement learning, UAV path planning,
             and intelligent robotics systems. MASc graduate from the University of Waterloo.
@@ -779,6 +823,21 @@
       spotlight.style.left = (x - 250) + 'px';
       spotlight.style.top = (y - 250) + 'px';
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const viewer = document.querySelector('spline-viewer');
+      if (!viewer) return;
+
+      const hideLogo = () => {
+        const logo = viewer.shadowRoot?.querySelector('#logo');
+        if (logo) {
+          logo.style.display = 'none';
+        }
+      };
+
+      hideLogo();
+      viewer.addEventListener('load-complete', hideLogo);
+    });
   </script>
 </body>
 
